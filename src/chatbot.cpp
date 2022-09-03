@@ -45,6 +45,65 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// copy constructor
+ChatBot::ChatBot(const ChatBot &chatBot) {
+    std::cout << "Copy constructor invoked. Source: " << &chatBot << ", destination: " << this << ".\n";
+    _chatLogic = chatBot._chatLogic;
+    _rootNode = chatBot._rootNode;
+    _image = new wxBitmap(*chatBot._image);
+}
+
+// copy assignment operator
+ChatBot &ChatBot::operator=(const ChatBot &chatBot) {
+    std::cout << "Copy assignment operator used. Source: " << &chatBot << ", destination: " << this << ".\n";
+    // only copy for a different address
+    if (&chatBot == this)
+        return *this;
+    // delete image of this instance  if previously assigned
+    if(_image != NULL) { // Attention: wxWidgets used NULL and not nullptr
+        delete _image;
+        _image = NULL;
+    }
+    _chatLogic = chatBot._chatLogic;
+    _rootNode = chatBot._rootNode;
+    _image = new wxBitmap(*chatBot._image);
+    return *this;
+}
+
+// move constructor
+ChatBot::ChatBot(ChatBot &&chatBot) {
+    std::cout << "Move constructor invoked. Source: " << &chatBot << ", destination: " << this << ".\n";
+    // move handles to this instance from given instance
+    _chatLogic = chatBot._chatLogic;
+    _rootNode = chatBot._rootNode;
+    _image = chatBot._image;
+    chatBot._chatLogic = nullptr;
+    chatBot._rootNode = nullptr;
+    chatBot._image = NULL;
+}
+
+// move assignment operator
+ChatBot &ChatBot::operator=(ChatBot &&chatBot) {
+    std::cout << "Move constructor invoked. Source: " << &chatBot << ", destination: " << this << ".\n";
+    // only move for a different address
+    if (&chatBot == this) {
+        return *this;
+    }
+    // delete image of this instance  if previously assigned
+    if(_image != NULL) { // Attention: wxWidgets used NULL and not nullptr
+        delete _image;
+        _image = NULL;
+    }
+    // move handles to this instance from given instance
+    _chatLogic = chatBot._chatLogic;
+    _rootNode = chatBot._rootNode;
+    _image = chatBot._image;
+    chatBot._chatLogic = nullptr;
+    chatBot._rootNode = nullptr;
+    chatBot._image = nullptr;
+    return *this;
+}
+
 ////
 //// EOF STUDENT CODE
 

@@ -11,7 +11,8 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
+//    BUG: _chatbot is not assigned memory from heap
+//    delete _chatBot;
 
     ////
     //// EOF STUDENT CODE

@@ -47,7 +47,7 @@ ChatBot::~ChatBot()
 
 // copy constructor
 ChatBot::ChatBot(const ChatBot &chatBot) {
-    std::cout << "Copy constructor invoked. Source: " << &chatBot << ", destination: " << this << ".\n";
+    std::cout << "ChatBot Copy constructor invoked. Source: " << &chatBot << ", destination: " << this << ".\n";
     _chatLogic = chatBot._chatLogic;
     _rootNode = chatBot._rootNode;
     _image = new wxBitmap(*chatBot._image);
@@ -55,7 +55,7 @@ ChatBot::ChatBot(const ChatBot &chatBot) {
 
 // copy assignment operator
 ChatBot &ChatBot::operator=(const ChatBot &chatBot) {
-    std::cout << "Copy assignment operator used. Source: " << &chatBot << ", destination: " << this << ".\n";
+    std::cout << "ChatBot Copy assignment operator. Source: " << &chatBot << ", destination: " << this << ".\n";
     // only copy for a different address
     if (&chatBot == this)
         return *this;
@@ -72,7 +72,7 @@ ChatBot &ChatBot::operator=(const ChatBot &chatBot) {
 
 // move constructor
 ChatBot::ChatBot(ChatBot &&chatBot) {
-    std::cout << "Move constructor invoked. Source: " << &chatBot << ", destination: " << this << ".\n";
+    std::cout << "ChatBot Move constructor. Source: " << &chatBot << ", destination: " << this << ".\n";
     // move handles to this instance from given instance
     _chatLogic = chatBot._chatLogic;
     _rootNode = chatBot._rootNode;
@@ -84,7 +84,7 @@ ChatBot::ChatBot(ChatBot &&chatBot) {
 
 // move assignment operator
 ChatBot &ChatBot::operator=(ChatBot &&chatBot) {
-    std::cout << "Move constructor invoked. Source: " << &chatBot << ", destination: " << this << ".\n";
+    std::cout << "ChatBot Move Assignment Operator. Source: " << &chatBot << ", destination: " << this << ".\n";
     // only move for a different address
     if (&chatBot == this) {
         return *this;

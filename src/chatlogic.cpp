@@ -174,8 +174,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
                             // store reference in child node and parent node
                             // use get to get the GraphEdge instance from smart pointer
-                            (*childNode)->AddEdgeToParentNode(edge.get());
-                            (*parentNode)->AddEdgeToChildNode(edge.get());
+                            (*childNode)->AddEdgeToParentNode(edge.get()); // Pass the reference to the parent node pointer object - incoming edge
+                            (*parentNode)->AddEdgeToChildNode(std::move(edge)); // Pass ownership of the edge - outgoing edge
                         }
 
                         ////
